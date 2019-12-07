@@ -20,7 +20,7 @@ class csvReader:
     def writeCSV(self):
         register = self.pairs.getRegister()
         file = open("myMatch.csv", "w")
-        file.write(str(register))
+        file.write("id,account,pair,action,price,match\n" + str(register))
 
 mycsv = csvReader()
 mycsv.readCSV()
