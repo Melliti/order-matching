@@ -21,13 +21,22 @@ class PairsList(object):
         instance = self.__pairs[order[2]]
         buyOrders = instance.buy
         for buyOrder in buyOrders:
-            print(len(buyOrder))
             if (len(buyOrder) < 6):
                 if (buyOrder[4] > order[4]):
                     print(order[0] + " match to " + buyOrder[0])
                     return True
         return False
 
+    def findMatchingSellOrder(self, order):
+        instance = self.__pairs[order[2]]
+        sellOrders = instance.sell
+        for sellOrder in sellOrders:
+            print(len(sellOrder))
+            if (len(sellOrder) < 6):
+                if (sellOrder[4] < order[4]):
+                    print(order[0] + " match to " + sellOrder[0])
+                    return True
+        return False
 
     def addPairToDict(self, pairs):
         if not pairs in self.__pairs:
@@ -36,6 +45,8 @@ class PairsList(object):
     def addOrderToPair(self, order):
         if order[3] == " SELL":
             self.findMatchingBuyOrder(order)
+        else:
+            self.findMatchingSellOrder(order)
         self.__register.append(order)
         instance = self.__pairs[order[2]]
         instance.sell.append(order) if order[3] == " SELL" else instance.buy.append(order)
