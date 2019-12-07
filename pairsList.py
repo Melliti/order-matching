@@ -17,6 +17,8 @@ class PairsList(object):
         else:
             PairsList.__instance = self
 
+
+    ### Matching Algorithm
     def findMatchingBuyOrder(self, order):
         instance = self.__pairs[order[2]]
         buyOrders = instance.buy
@@ -26,6 +28,7 @@ class PairsList(object):
                     print(order[0] + " match to " + buyOrder[0])
                     order.append(buyOrder[0])
                     self.__register.append(order)
+                    self.__register[int(buyOrder[0])].append(order[0])
                     buyOrders.remove(buyOrder)
                     return True
         self.__register.append(order)
@@ -40,11 +43,13 @@ class PairsList(object):
                     print(order[0] + " match to " + sellOrder[0])
                     order.append(sellOrder[0])
                     self.__register.append(order)
+                    self.__register[int(sellOrder[0])].append(order[0])
                     sellOrders.remove(sellOrder)
                     return True
         self.__register.append(order)
         return False
 
+    ### Organize Data
     def addPairToDict(self, pairs):
         if not pairs in self.__pairs:
             self.__pairs[pairs] = currencyPair.CurrencyPair(pairs)
@@ -55,13 +60,11 @@ class PairsList(object):
             match = self.findMatchingBuyOrder(order)
         else:
             match = self.findMatchingSellOrder(order)
-        # print(order)
-        # print(match)
         if (match == False):
             instance.sell.append(order) if order[3] == " SELL" else instance.buy.append(order)
-        self.__register.append(order)
         
 
+    ### Debug functions
     def showPairs(self):
         print("[PairsList.showPairs]")
         for key, value in self.__pairs.items():
@@ -71,9 +74,5 @@ class PairsList(object):
     def displayAll(self, row):
         instance = self.__pairs[row]
         print(f"for {row}")
-        # for key, value in self.__pairs.items():
-            # print(key)
-            # print(value.displayBuy())
-        # print(instance)
         instance.displayBuy()
         instance.displaySell()
