@@ -3,6 +3,7 @@ import currencyPair
 class PairsList(object):
     __pairs = {}
     __instance = None
+    __register = []
     
     @staticmethod
     def getInstance():
@@ -21,6 +22,7 @@ class PairsList(object):
             self.__pairs[pairs] = currencyPair.CurrencyPair(pairs)
     
     def addOrderToPair(self, order):
+        self.__register.append(order)
         instance = self.__pairs[order[2]]
         instance.sell.append(order) if order[3] == " SELL" else instance.buy.append(order)
         # instance.displayBuy()
@@ -40,3 +42,5 @@ class PairsList(object):
             # print(value.displayBuy())
         # print(instance)
         instance.displayBuy()
+        instance.displaySell()
+        print(self.__register)
