@@ -15,7 +15,7 @@ class csvReader:
                     continue
                 self.pairs.addPairToDict(row[2])
                 self.pairs.addOrderToPair(row)
-        self.pairs.displayAll(' EUR/USD')
+        self.pairs.completeRegister()
 
     def writeCSV(self):
         register = self.pairs.getRegister()

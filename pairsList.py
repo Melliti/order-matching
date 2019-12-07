@@ -19,6 +19,13 @@ class PairsList(object):
 
     def getRegister(self):
         return self.__register
+    
+    def completeRegister(self):
+        i = 0
+        while (i < len(self.__register)):
+            if (len(self.__register[i]) < 6):
+                self.__register[i].append("REJECTED")
+            i += 1
 
     ### Matching Algorithm
     def findMatchingBuyOrder(self, order):
@@ -78,3 +85,4 @@ class PairsList(object):
         print(f"for {row}")
         instance.displayBuy()
         instance.displaySell()
+        print(self.__register)
