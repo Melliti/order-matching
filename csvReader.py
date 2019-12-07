@@ -15,15 +15,13 @@ class csvReader:
                     continue
                 self.pairs.addPairToDict(row[2])
                 self.pairs.addOrderToPair(row)
-                # print(row)
-                # self.pairs.displayAll(row)
-            # print(self.pairs.showPairs())
-            # self.pairs.showPairs()
         self.pairs.displayAll(' EUR/USD')
-        self.pairs.displayAll(' CAD/USD')
 
-
-
+    def writeCSV(self):
+        register = self.pairs.getRegister()
+        file = open("myMatch.csv", "w")
+        file.write(str(register))
 
 mycsv = csvReader()
 mycsv.readCSV()
+mycsv.writeCSV()

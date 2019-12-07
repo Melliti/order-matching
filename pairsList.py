@@ -17,6 +17,8 @@ class PairsList(object):
         else:
             PairsList.__instance = self
 
+    def getRegister(self):
+        return self.__register
 
     ### Matching Algorithm
     def findMatchingBuyOrder(self, order):
