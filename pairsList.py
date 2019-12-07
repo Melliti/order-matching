@@ -34,7 +34,6 @@ class PairsList(object):
         for buyOrder in buyOrders:
             if (len(buyOrder) < 6):
                 if (buyOrder[4] > order[4]):
-                    print(order[0] + " match to " + buyOrder[0])
                     order.append(buyOrder[0])
                     self.__register.append(order)
                     self.__register[int(buyOrder[0])].append(order[0])
@@ -49,7 +48,6 @@ class PairsList(object):
         for sellOrder in sellOrders:
             if (len(sellOrder) < 6):
                 if (sellOrder[4] < order[4]):
-                    print(order[0] + " match to " + sellOrder[0])
                     order.append(sellOrder[0])
                     self.__register.append(order)
                     self.__register[int(sellOrder[0])].append(order[0])

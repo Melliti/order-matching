@@ -20,7 +20,11 @@ class csvReader:
     def writeCSV(self):
         register = self.pairs.getRegister()
         file = open("myMatch.csv", "w")
-        file.write("id,account,pair,action,price,match\n" + str(register))
+        file.write("id,account,pair,action,price,match\n")
+        for order in register:
+            orderStr = ","
+            orderStr = orderStr.join(order)
+            file.write(orderStr + "\n")
 
 mycsv = csvReader()
 mycsv.readCSV()
